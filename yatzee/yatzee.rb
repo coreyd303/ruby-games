@@ -1,5 +1,5 @@
 class Yatzee
-attr_reader :roll
+attr_reader :roll  # => nil
 
   def initialize
     d1 = rand(1..6)
@@ -52,8 +52,17 @@ attr_reader :roll
 
   def self.three_of_a_kind(roll)
     # check if there are 3 of a kind
-    
+    groups = roll.sort  # => 5
     # if there are add up all the dice
+    groups.keep_if {|g| g.count == 3 }  # ~> NoMethodError: undefined method `keep_if' for 5:Fixnum
     # if not return 0
   end
 end
+
+Yatzee.three_of_a_kind([3,3,3,1,1])
+
+# ~> NoMethodError
+# ~> undefined method `keep_if' for 5:Fixnum
+# ~>
+# ~> /Users/coreydavis/ruby_games/yatzee/yatzee.rb:57:in `three_of_a_kind'
+# ~> /Users/coreydavis/ruby_games/yatzee/yatzee.rb:62:in `<main>'

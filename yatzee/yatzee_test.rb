@@ -55,19 +55,28 @@ class YatzeeTest<Minitest::Unit::TestCase
   end
 
   def test_it_can_score_a_full_house
-    assert_equal(0,  Yatzee.three_of_a_kind([1,2,3,4,5]))
-    assert_equal(11, Yatzee.three_of_a_kind([3,3,3,1,1]))
-    assert_equal(20, Yatzee.three_of_a_kind([5,5,5,3,2]))
+    assert_equal(0,  Yatzee.full_house([1,2,3,4,5]))
+    assert_equal(25, Yatzee.full_house([3,3,3,1,1]))
+    assert_equal(25, Yatzee.full_house([5,5,5,1,1]))
   end
 
   def test_it_can_score_a_small_straight
-    
+    assert_equal(0,  Yatzee.small_straight([1,1,2,1,1]))
+    assert_equal(30, Yatzee.small_straight([1,2,3,4,4]))
+    assert_equal(30, Yatzee.small_straight([2,3,4,5,5]))
+    assert_equal(30, Yatzee.small_straight([3,4,5,6,6]))
   end
 
   def test_it_can_score_a_large_straight
+    assert_equal(40, Yatzee.large_straight([1,1,3,4,5]))
+    assert_equal(40, Yatzee.small_straight([1,2,3,4,5]))
+    assert_equal(40, Yatzee.small_straight([2,3,4,5,6]))
   end
 
   def test_it_can_score_a_yatzee
-    
+    assert_equal(0,  Yatzee.scores_a_yatzee([1,2,1,1,1]))
+    assert_equal(50, Yatzee.scores_a_yatzee([2,2,2,2,2]))
+    assert_equal(50, Yatzee.scores_a_yatzee([5,5,5,5,5]))
+    assert_equal(50, Yatzee.scores_a_yatzee([6,6,6,6,6]))
   end
 end
